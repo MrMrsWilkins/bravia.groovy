@@ -15,7 +15,8 @@
  *  Based on Jamie Yates's example:
  *   https://gist.github.com/jamieyates79/fd49d23c1dac1add951ec8ba5f0ff8ae
  *
- *  Note: Device Network ID must be hex of IP address and port (i.e. 0A0001DC:50)
+ *  Note: Device Network ID for Device instance must be hex of IP address and port
+ *  in the form of 00000000.0000 (i.e. 10.0.1.220 is 0A0001DC:0050)
  *
  *  JSON-RPC Methods From:
  *
@@ -62,12 +63,12 @@ metadata {
 
 def parse(description) {
   log.debug "Parsing '${description}'"
+  def msg = parseLanMessage(description)
 
-  def jsonSlurper = new groovy.json.JsonSlurper()
-  def object = jsonSlurper.parseText(result)
-  if (object?.id == 2) {
-    def status = object.result[0]?.status
-    sendEvent(name: "switch", value: (status == "active") ? "on" : "off")
+  if (msg.json?.id == 2) {
+    def status = (msg.json.result[0]?.status == "active") ? "on" : "off"
+    sendEvent(name: "switch", value: status)
+    log.debug "TV is '${status}'"
   }
 }
 
@@ -124,4 +125,3 @@ def poll() {
   def json = "{\"id\":2,\"method\":\"getPowerStatus\",\"version\":\"1.0\",\"params\":[]}"
   def result = sendJsonRpcCommand(json)
 }
-
