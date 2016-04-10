@@ -60,16 +60,15 @@ metadata {
   }
 }
 
-// parse events into attributes
-def parse(String description) {
+def parse(description) {
   log.debug "Parsing '${description}'"
-  // TODO: handle 'volume' attribute
-  // TODO: handle 'channel' attribute
-  // TODO: handle 'power' attribute
-  // TODO: handle 'picture' attribute
-  // TODO: handle 'sound' attribute
-  // TODO: handle 'movieMode' attribute
 
+  def jsonSlurper = new groovy.json.JsonSlurper()
+  def object = jsonSlurper.parseText(result)
+  if (object?.id == 2) {
+    def status = object.result[0]?.status
+    sendEvent(name: "switch", value: (status == "active") ? "on" : "off")
+  }
 }
 
 private sendJsonRpcCommand(json) {
@@ -126,13 +125,3 @@ def poll() {
   def result = sendJsonRpcCommand(json)
 }
 
-def parse(description) {
-  log.debug "Parsing '${description}'"
-
-  def jsonSlurper = new groovy.json.JsonSlurper()
-  def object = jsonSlurper.parseText(result)
-  if (object?.id == 2) {
-    def status = object.result[0]?.status
-    sendEvent(name: "switch", value: (status == "active") ? "on" : "off")
-  }
-}
