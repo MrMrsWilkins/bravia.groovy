@@ -15,7 +15,7 @@
  *  Based on Jamie Yates's example:
  *   https://gist.github.com/jamieyates79/fd49d23c1dac1add951ec8ba5f0ff8ae
  *
- *  Note: Network ID must be hex of IP address and port (i.e. 0A0001DC:50)
+ *  Note: Device Network ID must be hex of IP address and port (i.e. 0A0001DC:50)
  *
  *  JSON-RPC Methods From:
  *
