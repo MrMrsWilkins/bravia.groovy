@@ -1,5 +1,5 @@
 /**
- *  Sony X850C
+ *  Sony TV Smartthings Integration, Currently testing on: KDL-55W829B
  *
  *  Copyright 2016 Ed Anuff
  *
@@ -12,11 +12,13 @@
  *  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License
  *  for the specific language governing permissions and limitations under the License.
  *
+ * Based on Ed Anuff and Jamie Yates Code
+ *
  *  Based on Jamie Yates's example:
  *   https://gist.github.com/jamieyates79/fd49d23c1dac1add951ec8ba5f0ff8ae
  *
  *  Note: Device Network ID for Device instance must be hex of IP address and port
- *  in the form of 00000000.0000 (i.e. 10.0.1.220 is 0A0001DC:0050)
+ *  in the form of 00000000:0000 (i.e. 10.0.1.220:80 is 0A0001DC:0050)
  *
  *  JSON-RPC Methods From:
  *
@@ -35,10 +37,13 @@
  */
  
 metadata {
-  definition (name: "Sony X850C", namespace: "edanuff", author: "Ed Anuff") {
+  definition (name: "Sony Bravia TV", namespace: "steveAbratt", author: "Steve Bratt") {
     capability "Switch"
     capability "Polling"
     capability "Refresh"
+    
+    command "input"
+    command "WOLC"
   }
 
   simulator {
@@ -52,19 +57,44 @@ metadata {
       state "on", label: 'ON', action: "switch.off", icon: "st.switches.switch.on", backgroundColor: "#79b821"
     }
 
-    standardTile("refresh", "device.switch", inactiveLabel: false, height: 2, width: 2, decoration: "flat") {
+    standardTile("refresh", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
       state "default", label:"", action:"refresh.refresh", icon:"st.secondary.refresh"
+    }
+   
+   standardTile("input", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+      state "default", label:"Input", action:"input", icon:"st.secondary.refresh"
+    }
+
+   standardTile("WOLC", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+      state "default", label:"Wake", action:"WOLC", icon:"st.secondary.refresh"
     }
 
     main "switch"
-    details(["switch", "refresh"])
+    details(["switch", "refresh", "input", "WOLC"])
   }
 }
+
+
+preferences {
+
+input name: "ipAdd1", type: "number", range: "0..254", defaultValue: "192", required: true,
+            title: "Ip address part 1"
+}
+
+if (ipAdd1 == 192) {
+	log.debug "ip address default 192"
+}
+
+log.debug "ipAdd1 '${ipAdd1}'"
+
 
 def parse(description) {
   log.debug "Parsing '${description}'"
   def msg = parseLanMessage(description)
-
+	log.debug "msg '${msg}'"
+    log.debug "msg.json '${msg.json?.id}'"
+    log.debug "MAC Address '${msg.mac}'"
+    //log.debug "msg.json.status '${msg.json.result[0]?.status}'"
   if (msg.json?.id == 2) {
     def status = (msg.json.result[0]?.status == "active") ? "on" : "off"
     sendEvent(name: "switch", value: status)
@@ -75,7 +105,7 @@ def parse(description) {
 private sendJsonRpcCommand(json) {
 
   // TV IP and Pre-Shared Key
-  def tv_ip = "10.0.1.220"
+  def tv_ip = "192.168.0.12"
   def tv_psk = "1111"
 
   def headers = [:]
@@ -92,6 +122,9 @@ private sendJsonRpcCommand(json) {
 
   result
 }
+
+
+   
 
 def installed() {
   log.debug "Executing 'installed'"
@@ -119,9 +152,57 @@ def refresh() {
   poll()
 }
 
+def input() {
+
+	log.debug "Executing input"
+
+    //def rawcmd = "AAAAAQAAAAEAAAAvAw=="  //Wake On LAN
+    //def rawcmd = "AAAAAgAAABoAAAB8Aw=="  //netflix
+    def rawcmd = "AAAAAQAAAAEAAAAlAw=="  //input
+    //def rawcmd = "AAAAAgAAABoAAABbAw=="  //HDMi2
+    //def rawcmd = "AAAAAQAAAAEAAAAVAw=="  //TV Power
+    def ip = "192.168.0.12" //TV IP
+    def port = "80"          //TV's Port
+        //setDeviceNetworkId(ip,port)
+        log.debug( "Device IP:Port = ${ip}:${port}" )
+
+String ip_hex = ip.tokenize( '.' ).collect {
+  String.format( '%02x', it.toInteger() )
+}.join()
+
+String port_hex = port.tokenize( '.' ).collect {
+  String.format( '%04x', it.toInteger() )
+}.join()
+
+log.debug( "Device IP:Port = ${ip}:${port}" )
+log.debug( "Device IP:Port Hex = ${ip_hex}:${port_hex}" )
+        def sonycmd = new physicalgraph.device.HubSoapAction(
+            path:    '/sony/IRCC',
+            urn:     "urn:schemas-sony-com:service:IRCC:1",
+            action:  "X_SendIRCC",
+            body:    ["IRCCCode":rawcmd],
+            headers: [Host:"${ip}:${port}", 'X-Auth-PSK':"1111"]  //pre shared key (make sure TV is set up for Pre-shared Key!
+        )
+        sendHubCommand(sonycmd)
+
+        log.debug( "hubAction = ${sonycmd}" )
+}
+
+def WOLC() {
+    
+	def result = new physicalgraph.device.HubAction (
+  	  	"wake on lan ACD1B83DDA7B", 
+   		physicalgraph.device.Protocol.LAN,
+   		null,
+    	[secureCode: "111122223333"]
+	)
+	return result
+    
+}
+
+
 def poll() {
   log.debug "Executing 'poll'"
-
   def json = "{\"id\":2,\"method\":\"getPowerStatus\",\"version\":\"1.0\",\"params\":[]}"
   def result = sendJsonRpcCommand(json)
 }
