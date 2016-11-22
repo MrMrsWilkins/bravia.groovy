@@ -77,15 +77,36 @@ metadata {
 
 preferences {
 
-input name: "ipAdd1", type: "number", range: "0..254", defaultValue: "192", required: true,
-            title: "Ip address part 1"
+input name: "ipAdd1", type: "number", range: "0..254", defaultValue: "192", required: false, title: "Ip address part 1"
+input name: "ipAdd2", type: "number", range: "0..254", defaultValue: "168", required: false, title: "Ip address part 2"
+input name: "ipAdd3", type: "number", range: "0..254", defaultValue: "0", required: false, title: "Ip address part 3"
+input name: "ipAdd4", type: "number", range: "0..254", defaultValue: "12", required: false, title: "Ip address part 4"
+input name: "tv_psk", type: "text", defaultValue: "1111", title: "Passphrase", description: "Enter passphrase", required: false
+			
 }
 
-if (ipAdd1 == 192) {
-	log.debug "ip address default 192"
-}
+def ipAddr1 = ("192")
+def ipAddr2 = ("168")
+def ipAddr3 = ("0")
+def ipAddr4 = ("12")
+def tv_psk = ("1111")
 
-log.debug "ipAdd1 '${ipAdd1}'"
+log.debug("${ipAddr1} ${ipAddr2} ${ipAddr3} ${ipAddr4}") 
+
+def tv_ip = (ipAddr1 + "." + ipAddr2 + "." + ipAddr3 + "." + ipAddr4)
+def port = "80"
+
+String ip_hex = tv_ip.tokenize( '.' ).collect {
+  String.format( '%02x', it.toInteger() )
+}.join()
+
+String port_hex = port.tokenize( '.' ).collect {
+  String.format( '%04x', it.toInteger() )
+}.join()
+
+log.debug( "Device IP:Port = ${tv_ip}:${port}" )
+log.debug( "Device IP:Port Hex = ${ip_hex}:${port_hex}" )
+log.debug( "Passphrase ${tv_psk}")
 
 
 def parse(description) {
@@ -105,13 +126,13 @@ def parse(description) {
 private sendJsonRpcCommand(json) {
 
   // TV IP and Pre-Shared Key
-  def tv_ip = "192.168.0.12"
-  def tv_psk = "1111"
+  //def tv_ip = "192.168.0.12"
+  //def tv_psk = "1111"
 
   def headers = [:]
   headers.put("HOST", "${tv_ip}:80")
   headers.put("Content-Type", "application/json")
-  headers.put("X-Auth-PSK", tv_psk)
+  headers.put("X-Auth-PSK", "${tv_psk}")
 
   def result = new physicalgraph.device.HubAction(
     method: 'POST',
@@ -122,9 +143,6 @@ private sendJsonRpcCommand(json) {
 
   result
 }
-
-
-   
 
 def installed() {
   log.debug "Executing 'installed'"
@@ -161,27 +179,17 @@ def input() {
     def rawcmd = "AAAAAQAAAAEAAAAlAw=="  //input
     //def rawcmd = "AAAAAgAAABoAAABbAw=="  //HDMi2
     //def rawcmd = "AAAAAQAAAAEAAAAVAw=="  //TV Power
-    def ip = "192.168.0.12" //TV IP
-    def port = "80"          //TV's Port
+    //def ip = "192.168.0.12" //TV IP
+    //def port = "80"          //TV's Port
         //setDeviceNetworkId(ip,port)
-        log.debug( "Device IP:Port = ${ip}:${port}" )
+        log.debug( "Device IP:Port = ${tv_ip}:${port}" )
 
-String ip_hex = ip.tokenize( '.' ).collect {
-  String.format( '%02x', it.toInteger() )
-}.join()
-
-String port_hex = port.tokenize( '.' ).collect {
-  String.format( '%04x', it.toInteger() )
-}.join()
-
-log.debug( "Device IP:Port = ${ip}:${port}" )
-log.debug( "Device IP:Port Hex = ${ip_hex}:${port_hex}" )
         def sonycmd = new physicalgraph.device.HubSoapAction(
             path:    '/sony/IRCC',
             urn:     "urn:schemas-sony-com:service:IRCC:1",
             action:  "X_SendIRCC",
             body:    ["IRCCCode":rawcmd],
-            headers: [Host:"${ip}:${port}", 'X-Auth-PSK':"1111"]  //pre shared key (make sure TV is set up for Pre-shared Key!
+            headers: [Host:"${tv_ip}:${port}", 'X-Auth-PSK':"${tv_psk}"]
         )
         sendHubCommand(sonycmd)
 
@@ -206,3 +214,5 @@ def poll() {
   def json = "{\"id\":2,\"method\":\"getPowerStatus\",\"version\":\"1.0\",\"params\":[]}"
   def result = sendJsonRpcCommand(json)
 }
+
+
