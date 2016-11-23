@@ -1,7 +1,10 @@
 /**
  *  Sony TV Smartthings Integration, Currently testing on: KDL-55W829B
+
+Working on KDL-55W829B,
+
  *
- *  Copyright 2016 Ed Anuff
+ *  
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  *  in compliance with the License. You may obtain a copy of the License at:
@@ -17,22 +20,16 @@
  *  Based on Jamie Yates's example:
  *   https://gist.github.com/jamieyates79/fd49d23c1dac1add951ec8ba5f0ff8ae
  *
- *  Note: Device Network ID for Device instance must be hex of IP address and port
- *  in the form of 00000000:0000 (i.e. 10.0.1.220:80 is 0A0001DC:0050)
+ *  Note: Within the Device on the SmartThings IDE the Device Network ID for Device instance must be hex of IP address and port
+ *  in the form of 00000000:0000 (i.e. 10.0.1.220:80 is 0A0001DC:0050) - if you check the logs the smart device will log the 
+ *  correct address that you can copy paste, once the IP address has been set. If this is not set you wont get updated on/off status
  *
- *  JSON-RPC Methods From:
+ *  Please make sure the TV is on when you set up the device. 
  *
- *  curl -X "POST" "http://10.0.1.220/sony/system" \
- *  -H "X-Auth-PSK: 1111" \
- *  -H "Content-Type: application/json" \
- *  -d $'{
- *  "id": 4649,
- *  "method": "getMethodTypes",
- *  "version": "1.0",
- *  "params": [
- *    "1.0"
- *  ]
- *  }'
+ *
+ *  Wake on Lan button works when the TV is in ECO mode and goes to sleep even on wifi. however it takes a slight bit longer to boot
+ *  wake on lan wont yet update the status to on very quickly and status polls happen about every 5 mins so it maybe 5 mins before
+ *  the TV shows as on.
  *
  */
  
