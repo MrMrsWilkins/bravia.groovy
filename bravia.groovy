@@ -42,8 +42,19 @@ metadata {
     capability "Polling"
     capability "Refresh"
     
-    command "input"
+    command "tv_source"
+    command "hdmi1"
+    command "hdmi2"
+    command "hdmi3"
+    command "hdmi4"
+    command "mute"
+    command "netflix"
     command "WOLC"
+    command "ipaddress"
+    command "iphex"
+    command "macaddress"
+    command "home"
+   
   }
 
   simulator {
@@ -51,7 +62,7 @@ metadata {
     status "off": "on/off: 0"
   }
 
-  tiles {
+  tiles(scale:2) {
     standardTile("switch", "device.switch", width: 2, height: 2, canChangeIcon: true) {
       state "off", label: '${name}', action: "switch.on", icon: "st.switches.switch.off", backgroundColor: "#ffffff"
       state "on", label: 'ON', action: "switch.off", icon: "st.switches.switch.on", backgroundColor: "#79b821"
@@ -61,76 +72,131 @@ metadata {
       state "default", label:"", action:"refresh.refresh", icon:"st.secondary.refresh"
     }
    
-   standardTile("input", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
-      state "default", label:"Input", action:"input", icon:"st.secondary.refresh"
+   standardTile("tv_source", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+      state "default", label:"Source", action:"tv_source", icon:""
     }
 
    standardTile("WOLC", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
-      state "default", label:"Wake", action:"WOLC", icon:"st.secondary.refresh"
+      state "default", label:"Wake on Lan", action:"WOLC", icon:""
     }
 
+   standardTile("hdmi1", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+      state "default", label:"HDMI 1", action:"hdmi1", icon:""
+    }
+
+   standardTile("hdmi2", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+      state "default", label:"HDMI 2", action:"hdmi2", icon:""
+    }
+    
+   standardTile("hdmi3", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+      state "default", label:"HDMI 3", action:"hdmi3", icon:""
+    }
+    
+   standardTile("hdmi4", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+      state "default", label:"HDMI 4", action:"hdmi4", icon:""
+    }    
+
+   standardTile("netflix", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+      state "default", label:"Netflix", action:"netflix", icon:""
+    }
+    
+   standardTile("home", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+      state "default", label:"HOME", action:"home", icon:""
+    }
+
+   standardTile("mute", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+      state "default", label:"Mute", action:"mute", icon:""
+    }    
+    
     main "switch"
-    details(["switch", "refresh", "input", "WOLC"])
+    details(["switch", "tv_source", "hdmi1", "hdmi2", "hdmi3", "hdmi4", "netflix", "home", "mute", "refresh", "WOLC"])
   }
+
+
+
+  preferences {
+
+		input name: "ipadd1", type: "number", range: "0..254", required: true, title: "Ip address part 1", displayDuringSetup: true
+		input name: "ipadd2", type: "number", range: "0..254", required: true, title: "Ip address part 2", displayDuringSetup: true
+		input name: "ipadd3", type: "number", range: "0..254", required: true, title: "Ip address part 3", displayDuringSetup: true
+		input name: "ipadd4", type: "number", range: "0..254", required: true, title: "Ip address part 4", displayDuringSetup: true
+        input name: "tv_port", type: "number", range: "0..9999", required: true, title: "Port Usually: 80", displayDuringSetup: true
+		input name: "tv_psk", type: "text", defaultValue: "1111", title: "PSK Passphrase Set on your TV", description: "Enter passphrase", required: false, displayDuringSetup: true
+	
+	}
 }
 
 
-preferences {
 
-input name: "ipAdd1", type: "number", range: "0..254", defaultValue: "192", required: false, title: "Ip address part 1"
-input name: "ipAdd2", type: "number", range: "0..254", defaultValue: "168", required: false, title: "Ip address part 2"
-input name: "ipAdd3", type: "number", range: "0..254", defaultValue: "0", required: false, title: "Ip address part 3"
-input name: "ipAdd4", type: "number", range: "0..254", defaultValue: "12", required: false, title: "Ip address part 4"
-input name: "tv_psk", type: "text", defaultValue: "1111", title: "Passphrase", description: "Enter passphrase", required: false
-			
+def updated(){
+	log.debug( "Preferences Updated rebuilding IP Address, MAC address and Hex Network ID")
+	ipaddress()
+	iphex()
+	refresh()
 }
 
-def ipAddr1 = ("192")
-def ipAddr2 = ("168")
-def ipAddr3 = ("0")
-def ipAddr4 = ("12")
-def tv_psk = ("1111")
+def ipaddress(){
+	//Build an IP Address from the 4 input preferences
+	log.debug( "building IP address from Preferences")
+	state.tv_ip = "${ipadd1}" + "." + "${ipadd2}" + "." + "${ipadd3}" + "." + "${ipadd4}"
+	log.debug( "IP Address State Value Set to = ${state.tv_ip}:${tv_port}" )
+}
+	
+def iphex(){
+	//create a Hex of the IP this will need to be set as the Network ID
+	//TO DO Set the Network IP automatically or Show the user the Value to set manually
+	log.debug( "Creating Hex of IP: ${state.tv_ip}")
 
-log.debug("${ipAddr1} ${ipAddr2} ${ipAddr3} ${ipAddr4}") 
+	
+	String tvipstring = state.tv_ip
+	String tv_ip_hex = tvipstring.tokenize( '.' ).collect {
+		String.format( '%02x', it.toInteger() )
+	}.join()
 
-def tv_ip = (ipAddr1 + "." + ipAddr2 + "." + ipAddr3 + "." + ipAddr4)
-def port = "80"
+	//set the global value of state.ip_hex
+	state.ip_hex = tv_ip_hex
+	log.debug ("IP Hex stored Globaly as '${state.ip_hex}'")
 
-String ip_hex = tv_ip.tokenize( '.' ).collect {
-  String.format( '%02x', it.toInteger() )
-}.join()
+	log.debug( "Creating Hex of Port: ${tv_port}")
 
-String port_hex = port.tokenize( '.' ).collect {
-  String.format( '%04x', it.toInteger() )
-}.join()
 
-log.debug( "Device IP:Port = ${tv_ip}:${port}" )
-log.debug( "Device IP:Port Hex = ${ip_hex}:${port_hex}" )
-log.debug( "Passphrase ${tv_psk}")
+    String tvportstring = tv_port
+    String tv_port_hex = tvportstring.tokenize( '.' ).collect {
+    	String.format( '%04x', it.toInteger() )
+    }.join()
 
+    //Set the Global Value of state.port_hex
+    state.port_hex = tv_port_hex
+    log.debug ("Port Hex stored Globaly as '${state.port_hex}'")
+
+    log.debug( "Please set your Device Network ID to the following to allow the TV state to be captured: ${state.ip_hex}:${state.port_hex}" )
+    String netid = ("${state.ip_hex}:${state.port_hex}")
+    log.debug( "Netid ${netid}" )
+    //device.deviceNetworkId = ("${netid}")
+}
 
 def parse(description) {
-  log.debug "Parsing '${description}'"
+  //log.debug ("Parsing '${description}'")
   def msg = parseLanMessage(description)
-	log.debug "msg '${msg}'"
-    log.debug "msg.json '${msg.json?.id}'"
-    log.debug "MAC Address '${msg.mac}'"
-    //log.debug "msg.json.status '${msg.json.result[0]?.status}'"
+	//Set the Global Value of state.tv_mac
+    state.tv_mac = msg.mac
+    log.debug ("MAC Address stored Globally as '${state.tv_mac}'")
+    //log.debug "msg '${msg}'"
+    //log.debug "msg.json '${msg.json?.id}'"
+    
+  
   if (msg.json?.id == 2) {
-    def status = (msg.json.result[0]?.status == "active") ? "on" : "off"
-    sendEvent(name: "switch", value: status)
-    log.debug "TV is '${status}'"
+  	//Set the Global value of state.tv on or off
+    state.tv = (msg.json.result[0]?.status == "active") ? "on" : "off"
+    sendEvent(name: "switch", value: state.tv)
+    log.debug "TV is '${state.tv}'"
   }
 }
 
 private sendJsonRpcCommand(json) {
 
-  // TV IP and Pre-Shared Key
-  //def tv_ip = "192.168.0.12"
-  //def tv_psk = "1111"
-
   def headers = [:]
-  headers.put("HOST", "${tv_ip}:80")
+  headers.put("HOST", "${state.tv_ip}:${tv_port}")
   headers.put("Content-Type", "application/json")
   headers.put("X-Auth-PSK", "${tv_psk}")
 
@@ -155,6 +221,7 @@ def on() {
 
   def json = "{\"method\":\"setPowerStatus\",\"version\":\"1.0\",\"params\":[{\"status\":true}],\"id\":102}"
   def result = sendJsonRpcCommand(json)
+  poll()
 }
 
 def off() {
@@ -162,57 +229,241 @@ def off() {
 
   def json = "{\"method\":\"setPowerStatus\",\"version\":\"1.0\",\"params\":[{\"status\":false}],\"id\":102}"
   def result = sendJsonRpcCommand(json)
+  Poll()
 }
 
 def refresh() {
   log.debug "Executing 'refresh'"
-
   poll()
 }
-
-def input() {
-
-	log.debug "Executing input"
-
-    //def rawcmd = "AAAAAQAAAAEAAAAvAw=="  //Wake On LAN
-    //def rawcmd = "AAAAAgAAABoAAAB8Aw=="  //netflix
-    def rawcmd = "AAAAAQAAAAEAAAAlAw=="  //input
-    //def rawcmd = "AAAAAgAAABoAAABbAw=="  //HDMi2
-    //def rawcmd = "AAAAAQAAAAEAAAAVAw=="  //TV Power
-    //def ip = "192.168.0.12" //TV IP
-    //def port = "80"          //TV's Port
-        //setDeviceNetworkId(ip,port)
-        log.debug( "Device IP:Port = ${tv_ip}:${port}" )
-
-        def sonycmd = new physicalgraph.device.HubSoapAction(
-            path:    '/sony/IRCC',
-            urn:     "urn:schemas-sony-com:service:IRCC:1",
-            action:  "X_SendIRCC",
-            body:    ["IRCCCode":rawcmd],
-            headers: [Host:"${tv_ip}:${port}", 'X-Auth-PSK':"${tv_psk}"]
-        )
-        sendHubCommand(sonycmd)
-
-        log.debug( "hubAction = ${sonycmd}" )
-}
-
-def WOLC() {
-    
-	def result = new physicalgraph.device.HubAction (
-  	  	"wake on lan ACD1B83DDA7B", 
-   		physicalgraph.device.Protocol.LAN,
-   		null,
-    	[secureCode: "111122223333"]
-	)
-	return result
-    
-}
-
 
 def poll() {
   log.debug "Executing 'poll'"
   def json = "{\"id\":2,\"method\":\"getPowerStatus\",\"version\":\"1.0\",\"params\":[]}"
   def result = sendJsonRpcCommand(json)
 }
+
+def tv_source() {
+	log.debug "Executing Source"
+    def rawcmd = "AAAAAQAAAAEAAAAlAw=="  //tv source
+    def sonycmd = new physicalgraph.device.HubSoapAction(
+            path:    '/sony/IRCC',
+            urn:     "urn:schemas-sony-com:service:IRCC:1",
+            action:  "X_SendIRCC",
+            body:    ["IRCCCode":rawcmd],
+            headers: [Host:"${state.tv_ip}:${tv_port}", 'X-Auth-PSK':"${tv_psk}"]
+     )
+     sendHubCommand(sonycmd)
+     //log.debug( "hubAction = ${sonycmd}" )
+}
+
+
+def hdmi1() {
+	log.debug "Selecting HDMI 1 as input"
+    def rawcmd = "AAAAAgAAABoAAABaAw=="  //HDMI 1
+    def sonycmd = new physicalgraph.device.HubSoapAction(
+            path:    '/sony/IRCC',
+            urn:     "urn:schemas-sony-com:service:IRCC:1",
+            action:  "X_SendIRCC",
+            body:    ["IRCCCode":rawcmd],
+            headers: [Host:"${state.tv_ip}:${tv_port}", 'X-Auth-PSK':"${tv_psk}"]
+     )
+     sendHubCommand(sonycmd)
+     //log.debug( "hubAction = ${sonycmd}" )
+}
+
+def hdmi2() {
+	log.debug "Selecting HDMI 2 as input"
+    def rawcmd = "AAAAAgAAABoAAABbAw=="  //HDMI 2
+    def sonycmd = new physicalgraph.device.HubSoapAction(
+            path:    '/sony/IRCC',
+            urn:     "urn:schemas-sony-com:service:IRCC:1",
+            action:  "X_SendIRCC",
+            body:    ["IRCCCode":rawcmd],
+            headers: [Host:"${state.tv_ip}:${tv_port}", 'X-Auth-PSK':"${tv_psk}"]
+     )
+     sendHubCommand(sonycmd)
+     //log.debug( "hubAction = ${sonycmd}" )
+}
+
+def hdmi3() {
+	log.debug "Selecting HDMI 3 as input"
+    def rawcmd = "AAAAAgAAABoAAABcAw=="  //HDMI 3
+    def sonycmd = new physicalgraph.device.HubSoapAction(
+            path:    '/sony/IRCC',
+            urn:     "urn:schemas-sony-com:service:IRCC:1",
+            action:  "X_SendIRCC",
+            body:    ["IRCCCode":rawcmd],
+            headers: [Host:"${state.tv_ip}:${tv_port}", 'X-Auth-PSK':"${tv_psk}"]
+     )
+     sendHubCommand(sonycmd)
+     //log.debug( "hubAction = ${sonycmd}" )
+}
+
+def hdmi4() {
+	log.debug "Selecting HDMI 4 as input"
+    def rawcmd = "AAAAAgAAABoAAABdAw=="  //HDMI 4
+    def sonycmd = new physicalgraph.device.HubSoapAction(
+            path:    '/sony/IRCC',
+            urn:     "urn:schemas-sony-com:service:IRCC:1",
+            action:  "X_SendIRCC",
+            body:    ["IRCCCode":rawcmd],
+            headers: [Host:"${state.tv_ip}:${tv_port}", 'X-Auth-PSK':"${tv_psk}"]
+     )
+     sendHubCommand(sonycmd)
+     //log.debug( "hubAction = ${sonycmd}" )
+}
+
+def netflix() {
+	log.debug "Launching Netflix"
+    def rawcmd = "AAAAAgAAABoAAAB8Aw=="  //netflix
+    def sonycmd = new physicalgraph.device.HubSoapAction(
+            path:    '/sony/IRCC',
+            urn:     "urn:schemas-sony-com:service:IRCC:1",
+            action:  "X_SendIRCC",
+            body:    ["IRCCCode":rawcmd],
+            headers: [Host:"${state.tv_ip}:${tv_port}", 'X-Auth-PSK':"${tv_psk}"]
+     )
+     sendHubCommand(sonycmd)
+     //log.debug( "hubAction = ${sonycmd}" )
+}
+
+def mute() {
+	log.debug "mute"
+    def rawcmd = "AAAAAQAAAAEAAAAUAw=="  //mute
+    def sonycmd = new physicalgraph.device.HubSoapAction(
+            path:    '/sony/IRCC',
+            urn:     "urn:schemas-sony-com:service:IRCC:1",
+            action:  "X_SendIRCC",
+            body:    ["IRCCCode":rawcmd],
+            headers: [Host:"${state.tv_ip}:${tv_port}", 'X-Auth-PSK':"${tv_psk}"]
+     )
+     sendHubCommand(sonycmd)
+     //log.debug( "hubAction = ${sonycmd}" )
+}
+
+def home() {
+	log.debug "home"
+    def rawcmd = "AAAAAQAAAAEAAABgAw=="  //home
+    def sonycmd = new physicalgraph.device.HubSoapAction(
+            path:    '/sony/IRCC',
+            urn:     "urn:schemas-sony-com:service:IRCC:1",
+            action:  "X_SendIRCC",
+            body:    ["IRCCCode":rawcmd],
+            headers: [Host:"${state.tv_ip}:${tv_port}", 'X-Auth-PSK':"${tv_psk}"]
+     )
+     sendHubCommand(sonycmd)
+     //log.debug( "hubAction = ${sonycmd}" )
+}
+
+def WOLC() {
+    log.debug "Executing Wake on Lan"
+	def result = new physicalgraph.device.HubAction (
+  	  	"wake on lan ${state.tv_mac}", 
+   		physicalgraph.device.Protocol.LAN,
+   		null,
+    	[secureCode: "111122223333"]
+	)
+	return result
+}
+
+/**{"name":"PowerOff","value":"AAAAAQAAAAEAAAAvAw=="},
+{"name":"GGuide","value":"AAAAAQAAAAEAAAAOAw=="},
+{"name":"EPG","value":"AAAAAgAAAKQAAABbAw=="},
+{"name":"Favorites","value":"AAAAAgAAAHcAAAB2Aw=="},
+{"name":"Display","value":"AAAAAQAAAAEAAAA6Aw=="},
+{"name":"Home","value":"AAAAAQAAAAEAAABgAw=="},
+{"name":"Options","value":"AAAAAgAAAJcAAAA2Aw=="},
+{"name":"Return","value":"AAAAAgAAAJcAAAAjAw=="},
+{"name":"Up","value":"AAAAAQAAAAEAAAB0Aw=="},
+{"name":"Down","value":"AAAAAQAAAAEAAAB1Aw=="},
+{"name":"Right","value":"AAAAAQAAAAEAAAAzAw=="},
+{"name":"Left","value":"AAAAAQAAAAEAAAA0Aw=="},
+{"name":"Confirm","value":"AAAAAQAAAAEAAABlAw=="},
+{"name":"Red","value":"AAAAAgAAAJcAAAAlAw=="},
+{"name":"Green","value":"AAAAAgAAAJcAAAAmAw=="},
+{"name":"Yellow","value":"AAAAAgAAAJcAAAAnAw=="},
+{"name":"Blue","value":"AAAAAgAAAJcAAAAkAw=="},
+{"name":"Num1","value":"AAAAAQAAAAEAAAAAAw=="},
+{"name":"Num2","value":"AAAAAQAAAAEAAAABAw=="},
+{"name":"Num3","value":"AAAAAQAAAAEAAAACAw=="},
+{"name":"Num4","value":"AAAAAQAAAAEAAAADAw=="},
+{"name":"Num5","value":"AAAAAQAAAAEAAAAEAw=="},
+{"name":"Num6","value":"AAAAAQAAAAEAAAAFAw=="},
+{"name":"Num7","value":"AAAAAQAAAAEAAAAGAw=="},
+{"name":"Num8","value":"AAAAAQAAAAEAAAAHAw=="},
+{"name":"Num9","value":"AAAAAQAAAAEAAAAIAw=="},
+{"name":"Num0","value":"AAAAAQAAAAEAAAAJAw=="},
+{"name":"Num11","value":"AAAAAQAAAAEAAAAKAw=="},
+{"name":"Num12","value":"AAAAAQAAAAEAAAALAw=="},
+{"name":"VolumeUp","value":"AAAAAQAAAAEAAAASAw=="},
+{"name":"VolumeDown","value":"AAAAAQAAAAEAAAATAw=="},
+{"name":"Mute","value":"AAAAAQAAAAEAAAAUAw=="},
+{"name":"ChannelUp","value":"AAAAAQAAAAEAAAAQAw=="},
+{"name":"ChannelDown","value":"AAAAAQAAAAEAAAARAw=="},
+{"name":"SubTitle","value":"AAAAAgAAAJcAAAAoAw=="},
+{"name":"ClosedCaption","value":"AAAAAgAAAKQAAAAQAw=="},
+{"name":"Enter","value":"AAAAAQAAAAEAAAALAw=="},
+{"name":"DOT","value":"AAAAAgAAAJcAAAAdAw=="},
+{"name":"Analog","value":"AAAAAgAAAHcAAAANAw=="},
+{"name":"Teletext","value":"AAAAAQAAAAEAAAA/Aw=="},
+{"name":"Exit","value":"AAAAAQAAAAEAAABjAw=="},
+{"name":"Analog2","value":"AAAAAQAAAAEAAAA4Aw=="},
+{"name":"*AD","value":"AAAAAgAAABoAAAA7Aw=="},
+{"name":"Digital","value":"AAAAAgAAAJcAAAAyAw=="},
+{"name":"Analog?","value":"AAAAAgAAAJcAAAAuAw=="},
+{"name":"BS","value":"AAAAAgAAAJcAAAAsAw=="},
+{"name":"CS","value":"AAAAAgAAAJcAAAArAw=="},
+{"name":"BSCS","value":"AAAAAgAAAJcAAAAQAw=="},
+{"name":"Ddata","value":"AAAAAgAAAJcAAAAVAw=="},
+{"name":"PicOff","value":"AAAAAQAAAAEAAAA+Aw=="},
+{"name":"Tv_Radio","value":"AAAAAgAAABoAAABXAw=="},
+{"name":"Theater","value":"AAAAAgAAAHcAAABgAw=="},
+{"name":"SEN","value":"AAAAAgAAABoAAAB9Aw=="},
+{"name":"InternetWidgets","value":"AAAAAgAAABoAAAB6Aw=="},
+{"name":"InternetVideo","value":"AAAAAgAAABoAAAB5Aw=="},
+{"name":"Netflix","value":"AAAAAgAAABoAAAB8Aw=="},
+{"name":"SceneSelect","value":"AAAAAgAAABoAAAB4Aw=="},
+{"name":"Mode3D","value":"AAAAAgAAAHcAAABNAw=="},
+{"name":"iManual","value":"AAAAAgAAABoAAAB7Aw=="},
+{"name":"Audio","value":"AAAAAQAAAAEAAAAXAw=="},
+{"name":"Wide","value":"AAAAAgAAAKQAAAA9Aw=="},
+{"name":"Jump","value":"AAAAAQAAAAEAAAA7Aw=="},
+{"name":"PAP","value":"AAAAAgAAAKQAAAB3Aw=="},
+{"name":"MyEPG","value":"AAAAAgAAAHcAAABrAw=="},
+{"name":"ProgramDescription","value":"AAAAAgAAAJcAAAAWAw=="},
+{"name":"WriteChapter","value":"AAAAAgAAAHcAAABsAw=="},
+{"name":"TrackID","value":"AAAAAgAAABoAAAB+Aw=="},
+{"name":"TenKey","value":"AAAAAgAAAJcAAAAMAw=="},
+{"name":"AppliCast","value":"AAAAAgAAABoAAABvAw=="},
+{"name":"acTVila","value":"AAAAAgAAABoAAAByAw=="},
+{"name":"DeleteVideo","value":"AAAAAgAAAHcAAAAfAw=="},
+{"name":"PhotoFrame","value":"AAAAAgAAABoAAABVAw=="},
+{"name":"TvPause","value":"AAAAAgAAABoAAABnAw=="},
+{"name":"KeyPad","value":"AAAAAgAAABoAAAB1Aw=="},
+{"name":"Media","value":"AAAAAgAAAJcAAAA4Aw=="},
+{"name":"SyncMenu","value":"AAAAAgAAABoAAABYAw=="},
+{"name":"Forward","value":"AAAAAgAAAJcAAAAcAw=="},
+{"name":"Play","value":"AAAAAgAAAJcAAAAaAw=="},
+{"name":"Rewind","value":"AAAAAgAAAJcAAAAbAw=="},
+{"name":"Prev","value":"AAAAAgAAAJcAAAA8Aw=="},
+{"name":"Stop","value":"AAAAAgAAAJcAAAAYAw=="},
+{"name":"Next","value":"AAAAAgAAAJcAAAA9Aw=="},
+{"name":"Rec","value":"AAAAAgAAAJcAAAAgAw=="},
+{"name":"Pause","value":"AAAAAgAAAJcAAAAZAw=="},
+{"name":"Eject","value":"AAAAAgAAAJcAAABIAw=="},
+{"name":"FlashPlus","value":"AAAAAgAAAJcAAAB4Aw=="},
+{"name":"FlashMinus","value":"AAAAAgAAAJcAAAB5Aw=="},
+{"name":"TopMenu","value":"AAAAAgAAABoAAABgAw=="},
+{"name":"PopUpMenu","value":"AAAAAgAAABoAAABhAw=="},
+{"name":"RakurakuStart","value":"AAAAAgAAAHcAAABqAw=="},
+{"name":"OneTouchTimeRec","value":"AAAAAgAAABoAAABkAw=="},
+{"name":"OneTouchView","value":"AAAAAgAAABoAAABlAw=="},
+{"name":"OneTouchRec","value":"AAAAAgAAABoAAABiAw=="},
+{"name":"OneTouchStop","value":"AAAAAgAAABoAAABjAw=="},
+{"name":"DUX","value":"AAAAAgAAABoAAABzAw=="},
+{"name":"FootballMode","value":"AAAAAgAAABoAAAB2Aw=="},
+{"name":"Social","value":"AAAAAgAAABoAAAB0Aw=="}]]}
+*/
 
 
