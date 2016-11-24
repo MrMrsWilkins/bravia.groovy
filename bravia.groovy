@@ -117,8 +117,8 @@ metadata {
 		input name: "ipadd2", type: "number", range: "0..254", required: true, title: "Ip address part 2", displayDuringSetup: true
 		input name: "ipadd3", type: "number", range: "0..254", required: true, title: "Ip address part 3", displayDuringSetup: true
 		input name: "ipadd4", type: "number", range: "0..254", required: true, title: "Ip address part 4", displayDuringSetup: true
-        input name: "tv_port", type: "number", range: "0..9999", required: true, title: "Port Usually: 80", displayDuringSetup: true
-		input name: "tv_psk", type: "text", defaultValue: "1111", title: "PSK Passphrase Set on your TV", description: "Enter passphrase", required: false, displayDuringSetup: true
+                input name: "tv_port", type: "number", range: "0..9999", required: true, title: "Port Usually: 80", displayDuringSetup: true
+		input name: "tv_psk", type: "text", title: "PSK Passphrase Set on your TV", description: "Enter passphrase", required: true, displayDuringSetup: true
 	
 	}
 }
@@ -218,7 +218,7 @@ def on() {
 
   def json = "{\"method\":\"setPowerStatus\",\"version\":\"1.0\",\"params\":[{\"status\":true}],\"id\":102}"
   def result = sendJsonRpcCommand(json)
-  poll()
+  
 }
 
 def off() {
@@ -226,7 +226,7 @@ def off() {
 
   def json = "{\"method\":\"setPowerStatus\",\"version\":\"1.0\",\"params\":[{\"status\":false}],\"id\":102}"
   def result = sendJsonRpcCommand(json)
-  Poll()
+
 }
 
 def refresh() {
