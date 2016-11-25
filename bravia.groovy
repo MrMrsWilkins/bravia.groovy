@@ -39,6 +39,10 @@ metadata {
     capability "Polling"
     capability "Refresh"
     
+    command "sendremotecommand"
+    command "digital"
+    command "picoff"
+    
     command "tv_source"
     command "hdmi1"
     command "hdmi2"
@@ -65,6 +69,14 @@ metadata {
       state "on", label: 'ON', action: "switch.off", icon: "st.switches.switch.on", backgroundColor: "#79b821"
     }
 
+    standardTile("digital", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+      state "default", label:"Digital", action:"digital", icon:""
+    }
+    
+    standardTile("picoff", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+      state "default", label:"PicOff", action:"picoff", icon:""
+    }
+    
     standardTile("refresh", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
       state "default", label:"", action:"refresh.refresh", icon:"st.secondary.refresh"
     }
@@ -106,7 +118,7 @@ metadata {
     }    
     
     main "switch"
-    details(["switch", "tv_source", "hdmi1", "hdmi2", "hdmi3", "hdmi4", "netflix", "home", "mute", "refresh", "WOLC"])
+    details(["switch", "digital", "picoff", "tv_source", "hdmi1", "hdmi2", "hdmi3", "hdmi4", "netflix", "home", "mute", "refresh", "WOLC"])
   }
 
 
@@ -117,7 +129,7 @@ metadata {
 		input name: "ipadd2", type: "number", range: "0..254", required: true, title: "Ip address part 2", displayDuringSetup: true
 		input name: "ipadd3", type: "number", range: "0..254", required: true, title: "Ip address part 3", displayDuringSetup: true
 		input name: "ipadd4", type: "number", range: "0..254", required: true, title: "Ip address part 4", displayDuringSetup: true
-                input name: "tv_port", type: "number", range: "0..9999", required: true, title: "Port Usually: 80", displayDuringSetup: true
+		input name: "tv_port", type: "number", range: "0..9999", required: true, title: "Port Usually: 80", displayDuringSetup: true
 		input name: "tv_psk", type: "text", title: "PSK Passphrase Set on your TV", description: "Enter passphrase", required: true, displayDuringSetup: true
 	
 	}
@@ -127,9 +139,11 @@ metadata {
 
 def updated(){
 	log.debug( "Preferences Updated rebuilding IP Address, MAC address and Hex Network ID")
+	state.tv_poll_count = 0
 	ipaddress()
 	iphex()
 	refresh()
+	
 }
 
 def ipaddress(){
@@ -176,6 +190,7 @@ def parse(description) {
   //log.debug ("Parsing '${description}'")
   def msg = parseLanMessage(description)
 	//Set the Global Value of state.tv_mac
+	//log.debug "${msg}"
     state.tv_mac = msg.mac
     log.debug ("MAC Address stored Globally as '${state.tv_mac}'")
     //log.debug "msg '${msg}'"
@@ -184,6 +199,7 @@ def parse(description) {
   
   if (msg.json?.id == 2) {
   	//Set the Global value of state.tv on or off
+  	state.tv_poll_count = 0
     state.tv = (msg.json.result[0]?.status == "active") ? "on" : "off"
     sendEvent(name: "switch", value: state.tv)
     log.debug "TV is '${state.tv}'"
@@ -215,10 +231,13 @@ def installed() {
 
 def on() {
   log.debug "Executing 'on'"
-
-  def json = "{\"method\":\"setPowerStatus\",\"version\":\"1.0\",\"params\":[{\"status\":true}],\"id\":102}"
-  def result = sendJsonRpcCommand(json)
   
+  if (state.tv == "polling"){
+  	  WOLC()
+  } else {
+  	  def json = "{\"method\":\"setPowerStatus\",\"version\":\"1.0\",\"params\":[{\"status\":true}],\"id\":102}"
+  	  def result = sendJsonRpcCommand(json)
+  }
 }
 
 def off() {
@@ -235,10 +254,49 @@ def refresh() {
 }
 
 def poll() {
+  //set state.tv to 0ff
+  log.debug "poll count ${state.tv_poll_count}"
+  state.tv = "polling"
+  state.tv_poll_count = state.tv_poll_count++
+  if (state.tv_poll_count > 1 ) {
+  	  sendEvent(name: "switch", value: "off")
+  }
   log.debug "Executing 'poll'"
   def json = "{\"id\":2,\"method\":\"getPowerStatus\",\"version\":\"1.0\",\"params\":[]}"
   def result = sendJsonRpcCommand(json)
 }
+
+def digital(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAJcAAAAyAw=="
+	state.button = "Digital"
+	sendremotecommand()
+}
+
+def picoff(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAA+Aw=="
+	state.button = "Pic Off"
+	sendremotecommand()
+}
+
+
+
+
+def sendremotecommand(){
+	log.debug "Sending Button: ${state.button} ${state.remotecommand}"
+    def rawcmd = "${state.remotecommand}"
+    def sonycmd = new physicalgraph.device.HubSoapAction(
+            path:    '/sony/IRCC',
+            urn:     "urn:schemas-sony-com:service:IRCC:1",
+            action:  "X_SendIRCC",
+            body:    ["IRCCCode":rawcmd],
+            headers: [Host:"${state.tv_ip}:${tv_port}", 'X-Auth-PSK':"${tv_psk}"]
+     )
+     sendHubCommand(sonycmd)
+     log.debug( "hubAction = ${sonycmd}" )
+}
+
 
 def tv_source() {
 	log.debug "Executing Source"
