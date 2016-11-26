@@ -55,7 +55,35 @@ metadata {
     command "iphex"
     command "macaddress"
     command "home"
-   
+    command "gguide"
+    command "epg"
+    command "favorites"
+    command "display"
+    command "options"
+    command "retu"
+    command "up"
+    command "down"
+    command "right"
+    command "left"
+    command "confirm"
+    command "green"
+    command "yellow"
+    command "blue"
+    command "num1"
+    command "num2"
+    command "num3"
+    command "num4"
+    command "num5"
+    command "num6"
+    command "num7"
+    command "num8"
+    command "num9"
+    command "num0"
+    command "num11"
+    command "num12"
+    command "volumeup"
+    command "volumedown"
+    
   }
 
   simulator {
@@ -115,10 +143,124 @@ metadata {
 
    standardTile("mute", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
       state "default", label:"Mute", action:"mute", icon:""
-    }    
+    }
+    
+    standardTile("gguide", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"gguide", action:"gguide", icon:""
+} 
+
+standardTile("epg", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"epg", action:"epg", icon:""
+} 
+
+standardTile("favorites", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"favorites", action:"favorites", icon:""
+} 
+
+standardTile("display", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"display", action:"display", icon:""
+} 
+
+standardTile("options", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"options", action:"options", icon:""
+} 
+
+standardTile("retu", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"return", action:"retu", icon:""
+} 
+
+standardTile("up", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"up", action:"up", icon:""
+} 
+
+standardTile("down", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"down", action:"down", icon:""
+} 
+
+standardTile("right", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"right", action:"right", icon:""
+} 
+
+standardTile("left", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"left", action:"left", icon:""
+} 
+
+standardTile("confirm", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"confirm", action:"confirm", icon:""
+} 
+
+standardTile("green", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"green", action:"green", icon:""
+} 
+
+standardTile("yellow", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"yellow", action:"yellow", icon:""
+} 
+
+standardTile("blue", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"blue", action:"blue", icon:""
+} 
+
+standardTile("num1", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"num1", action:"num1", icon:""
+} 
+
+standardTile("num2", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"num2", action:"num2", icon:""
+} 
+
+standardTile("num3", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"num3", action:"num3", icon:""
+} 
+
+standardTile("num4", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"num4", action:"num4", icon:""
+} 
+
+standardTile("num5", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"num5", action:"num5", icon:""
+} 
+
+standardTile("num6", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"num6", action:"num6", icon:""
+} 
+
+standardTile("num7", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"num7", action:"num7", icon:""
+} 
+
+standardTile("num8", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"num8", action:"num8", icon:""
+} 
+
+standardTile("num9", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"num9", action:"num9", icon:""
+} 
+
+standardTile("num0", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"num0", action:"num0", icon:""
+} 
+
+standardTile("num11", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"num11", action:"num11", icon:""
+} 
+
+standardTile("num12", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"num12", action:"num12", icon:""
+} 
+
+standardTile("volumeup", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"volumeup", action:"volumeup", icon:""
+} 
+
+standardTile("volumedown", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"volumedown", action:"volumedown", icon:""
+} 
+
+
     
     main "switch"
-    details(["switch", "digital", "picoff", "tv_source", "hdmi1", "hdmi2", "hdmi3", "hdmi4", "netflix", "home", "mute", "refresh", "WOLC"])
+    details(["switch", "digital", "picoff", "tv_source", "hdmi1", "hdmi2", "hdmi3", "hdmi4", "netflix", "home", "mute", "refresh", "gguide", "epg", "favorites", "display", "options", "retu", "up", "down", "right", "left", "confirm", "green", "yellow", "blue", "num1", "num2", "num3", "num4", "num5", "num6", "num7", "num8", "num9", "num0", "num11", "num12", "volumeup", "volumedown", "WOLC"])
   }
 
 
@@ -266,6 +408,12 @@ def poll() {
   def result = sendJsonRpcCommand(json)
 }
 
+
+/**-------------------------------------------------------
+All remote Functions Assigned below
+--------------------------------------------------------*/
+
+
 def digital(){
 	//Set Remote command to send
 	state.remotecommand = "AAAAAgAAAJcAAAAyAw=="
@@ -282,6 +430,210 @@ def picoff(){
 
 
 
+
+
+def gguide(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAAOAw=="
+	state.button = "gguide"
+	sendremotecommand()
+}
+
+def epg(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAKQAAABbAw=="
+	state.button = "epg"
+	sendremotecommand()
+}
+
+def favorites(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAHcAAAB2Aw=="
+	state.button = "favorites"
+	sendremotecommand()
+}
+
+def display(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAA6Aw=="
+	state.button = "display"
+	sendremotecommand()
+}
+
+def home(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAABgAw=="
+	state.button = "home"
+	sendremotecommand()
+}
+
+def options(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAJcAAAA2Aw=="
+	state.button = "options"
+	sendremotecommand()
+}
+
+def retu(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAJcAAAAjAw="
+	state.button = "retu"
+	sendremotecommand()
+}
+
+def up(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAB0Aw=="
+	state.button = "up"
+	sendremotecommand()
+}
+
+def down(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAB1Aw=="
+	state.button = "down"
+	sendremotecommand()
+}
+
+def right(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAAzAw=="
+	state.button = "right"
+	sendremotecommand()
+}
+
+def left(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAA0Aw=="
+	state.button = "left"
+	sendremotecommand()
+}
+
+def confirm(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAABlAw=="
+	state.button = "confirm"
+	sendremotecommand()
+}
+
+def green(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAJcAAAAmAw=="
+	state.button = "green"
+	sendremotecommand()
+}
+
+def yellow(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAJcAAAAnAw=="
+	state.button = "yellow"
+	sendremotecommand()
+}
+
+def blue(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAJcAAAAkAw=="
+	state.button = "blue"
+	sendremotecommand()
+}
+
+def num1(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAAAAw=="
+	state.button = "num1"
+	sendremotecommand()
+}
+
+def num2(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAABAw=="
+	state.button = "num2"
+	sendremotecommand()
+}
+
+def num3(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAACAw=="
+	state.button = "num3"
+	sendremotecommand()
+}
+
+def num4(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAADAw=="
+	state.button = "num4"
+	sendremotecommand()
+}
+
+def num5(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAAEAw=="
+	state.button = "num5"
+	sendremotecommand()
+}
+
+def num6(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAAFAw=="
+	state.button = "num6"
+	sendremotecommand()
+}
+
+def num7(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAAGAw=="
+	state.button = "num7"
+	sendremotecommand()
+}
+
+def num8(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAAHAw=="
+	state.button = "num8"
+	sendremotecommand()
+}
+
+def num9(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAAIAw=="
+	state.button = "num9"
+	sendremotecommand()
+}
+
+def num0(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAAJAw=="
+	state.button = "num0"
+	sendremotecommand()
+}
+
+def num11(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAAKAw=="
+	state.button = "num11"
+	sendremotecommand()
+}
+
+def num12(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAALAw=="
+	state.button = "num12"
+	sendremotecommand()
+}
+
+def volumeup(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAASAw=="
+	state.button = "volumeup"
+	sendremotecommand()
+}
+
+def volumedown(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAATAw=="
+	state.button = "volumedown"
+	sendremotecommand()
+}
 
 def sendremotecommand(){
 	log.debug "Sending Button: ${state.button} ${state.remotecommand}"
@@ -386,20 +738,6 @@ def netflix() {
 def mute() {
 	log.debug "mute"
     def rawcmd = "AAAAAQAAAAEAAAAUAw=="  //mute
-    def sonycmd = new physicalgraph.device.HubSoapAction(
-            path:    '/sony/IRCC',
-            urn:     "urn:schemas-sony-com:service:IRCC:1",
-            action:  "X_SendIRCC",
-            body:    ["IRCCCode":rawcmd],
-            headers: [Host:"${state.tv_ip}:${tv_port}", 'X-Auth-PSK':"${tv_psk}"]
-     )
-     sendHubCommand(sonycmd)
-     //log.debug( "hubAction = ${sonycmd}" )
-}
-
-def home() {
-	log.debug "home"
-    def rawcmd = "AAAAAQAAAAEAAABgAw=="  //home
     def sonycmd = new physicalgraph.device.HubSoapAction(
             path:    '/sony/IRCC',
             urn:     "urn:schemas-sony-com:service:IRCC:1",
