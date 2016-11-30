@@ -341,10 +341,10 @@ def parse(description) {
   
   if (msg.json?.id == 2) {
   	//Set the Global value of state.tv on or off
-  	state.tv_poll_count = 0
     state.tv = (msg.json.result[0]?.status == "active") ? "on" : "off"
     sendEvent(name: "switch", value: state.tv)
     log.debug "TV is '${state.tv}'"
+    state.tv_poll_count = 0
   }
 }
 
@@ -373,7 +373,7 @@ def installed() {
 
 def on() {
   log.debug "Executing 'on'"
-  
+  state.tv_poll_count = 0
   if (state.tv == "polling"){
   	  WOLC()
   } else {
@@ -399,9 +399,10 @@ def poll() {
   //set state.tv to 0ff
   log.debug "poll count ${state.tv_poll_count}"
   state.tv = "polling"
-  state.tv_poll_count = state.tv_poll_count++
+  state.tv_poll_count = (state.tv_poll_count + 1)
   if (state.tv_poll_count > 1 ) {
   	  sendEvent(name: "switch", value: "off")
+  	  state.tv_poll_count = 5
   }
   log.debug "Executing 'poll'"
   def json = "{\"id\":2,\"method\":\"getPowerStatus\",\"version\":\"1.0\",\"params\":[]}"
