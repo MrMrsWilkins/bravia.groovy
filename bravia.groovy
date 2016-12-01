@@ -83,6 +83,69 @@ metadata {
     command "num12"
     command "volumeup"
     command "volumedown"
+    command "ChannelUp"
+    command "ChannelDown"
+    command "SubTitle"
+    command "ClosedCaption"
+    command "Enter"
+    command "DOT"
+    command "Analog"
+    command "Teletext"
+    command "Exit"
+    command "Analog2"
+    command "AD"
+    command "Digital"
+    command "Analogg"
+    command "BS"
+    command "CS"
+    command "BSCS"
+    command "Ddata"
+    command "PicOff"
+    command "Tv_Radio"
+    command "Theater"
+    command "SEN"
+    command "InternetWidgets"
+    command "InternetVideo"
+    command "Netflix"
+    command "SceneSelect"
+    command "Mode3D"
+    command "iManual"
+    command "Audio"
+    command "Wide"
+    command "Jump"
+    command "PAP"
+    command "MyEPG"
+    command "ProgramDescription"
+    command "WriteChapter"
+    command "TrackID"
+    command "TenKey"
+    command "AppliCast"
+    command "acTVila"
+    command "DeleteVideo"
+    command "PhotoFrame"
+    command "TvPause"
+    command "KeyPad"
+    command "Media"
+    command "Forward"
+    command "Play"
+    command "Rewind"
+    command "Prev"
+    command "Stop"
+    command "Next"
+    command "Rec"
+    command "Pause"
+    command "Eject"
+    command "FlashPlus"
+    command "FlashMinus"
+    command "TopMenu"
+    command "RakurakuStart"
+    command "OneTouchTimeRec"
+    command "OneTouchView"
+    command "OneTouchRec"
+    command "OneTouchStop"
+    command "DUX"
+    command "FootballMode"
+    command "Social"
     
   }
 
@@ -257,10 +320,256 @@ standardTile("volumedown", "device.switch", inactiveLabel: false, height: 1, wid
    state "default", label:"volumedown", action:"volumedown", icon:""
 } 
 
+standardTile("ChannelUp", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"ChannelUp", action:"ChannelUp", icon:""
+}
+
+standardTile("ChannelDown", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"ChannelDown", action:"ChannelDown", icon:""
+}
+ 
+standardTile("SubTitle", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"SubTitle", action:"SubTitle", icon:""
+} 
+
+standardTile("ClosedCaption", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"ClosedCaption", action:"ClosedCaption", icon:""
+} 
+
+standardTile("Enter", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Enter", action:"Enter", icon:""
+} 
+
+standardTile("DOT", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"DOT", action:"DOT", icon:""
+} 
+
+standardTile("Analog", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Analog", action:"Analog", icon:""
+} 
+
+standardTile("Teletext", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Teletext", action:"Teletext", icon:""
+} 
+
+standardTile("Exit", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Exit", action:"Exit", icon:""
+} 
+
+standardTile("Analog2", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Analog2", action:"Analog2", icon:""
+} 
+
+standardTile("AD", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"*AD", action:"AD", icon:""
+} 
+
+standardTile("Digital", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Digital", action:"Digital", icon:""
+} 
+
+standardTile("Analogg", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Analog?", action:"Analogg", icon:""
+} 
+
+standardTile("BS", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"BS", action:"BS", icon:""
+} 
+
+standardTile("CS", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"CS", action:"CS", icon:""
+} 
+
+standardTile("BSCS", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"BSCS", action:"BSCS", icon:""
+} 
+
+standardTile("Ddata", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Ddata", action:"Ddata", icon:""
+} 
+
+standardTile("Tv_Radio", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Tv_Radio", action:"Tv_Radio", icon:""
+} 
+standardTile("Theater", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Theater", action:"Theater", icon:""
+} 
+
+standardTile("SEN", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"SEN", action:"SEN", icon:""
+} 
+
+standardTile("InternetWidgets", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"InternetWidgets", action:"InternetWidgets", icon:""
+} 
+
+standardTile("InternetVideo", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"InternetVideo", action:"InternetVideo", icon:""
+} 
+
+standardTile("SceneSelect", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"SceneSelect", action:"SceneSelect", icon:""
+} 
+
+standardTile("Mode3D", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Mode3D", action:"Mode3D", icon:""
+} 
+
+standardTile("iManual", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"iManual", action:"iManual", icon:""
+} 
+
+standardTile("Audio", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Audio", action:"Audio", icon:""
+} 
+
+standardTile("Wide", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Wide", action:"Wide", icon:""
+} 
+
+standardTile("Jump", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Jump", action:"Jump", icon:""
+} 
+
+standardTile("PAP", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"PAP", action:"PAP", icon:""
+} 
+
+standardTile("MyEPG", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"MyEPG", action:"MyEPG", icon:""
+} 
+
+standardTile("ProgramDescription", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"ProgramDescription", action:"ProgramDescription", icon:""
+}
+
+standardTile("WriteChapter", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"WriteChapter", action:"WriteChapter", icon:""
+} 
+
+standardTile("TrackID", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"TrackID", action:"TrackID", icon:""
+} 
+
+standardTile("TenKey", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"TenKey", action:"TenKey", icon:""
+} 
+
+standardTile("AppliCast", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"AppliCast", action:"AppliCast", icon:""
+} 
+
+standardTile("DeleteVideo", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"DeleteVideo", action:"DeleteVideo", icon:""
+} 
+
+standardTile("PhotoFrame", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"PhotoFrame", action:"PhotoFrame", icon:""
+} 
+
+standardTile("TvPause", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"TvPause", action:"TvPause", icon:""
+} 
+
+standardTile("KeyPad", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"KeyPad", action:"KeyPad", icon:""
+}
+
+standardTile("Media", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Media", action:"Media", icon:""
+} 
+
+standardTile("SyncMenu", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"SyncMenu", action:"SyncMenu", icon:""
+} 
+
+standardTile("Forward", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Forward", action:"Forward", icon:""
+} 
+
+standardTile("Play", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Play", action:"Play", icon:""
+} 
+
+standardTile("Rewind", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Rewind", action:"Rewind", icon:""
+} 
+
+standardTile("Prev", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Prev", action:"Prev", icon:""
+} 
+
+standardTile("Stop", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Stop", action:"Stop", icon:""
+} 
+
+standardTile("Next", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Next", action:"Next", icon:""
+} 
+
+standardTile("Rec", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Rec", action:"Rec", icon:""
+} 
+
+standardTile("Pause", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Pause", action:"Pause", icon:""
+}
+
+standardTile("Eject", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Eject", action:"Eject", icon:""
+} 
+
+standardTile("FlashPlus", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"FlashPlus", action:"FlashPlus", icon:""
+} 
+
+standardTile("FlashMinus", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"FlashMinus", action:"FlashMinus", icon:""
+} 
+
+standardTile("TopMenu", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"TopMenu", action:"TopMenu", icon:""
+} 
+
+standardTile("PopUpMenu", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"PopUpMenu", action:"PopUpMenu", icon:""
+} 
+
+standardTile("RakurakuStart", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"RakurakuStart", action:"RakurakuStart", icon:""
+} 
+
+standardTile("OneTouchView", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"OneTouchView", action:"OneTouchView", icon:""
+} 
+
+standardTile("OneTouchTimeRec", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"OneTouchTimeRec", action:"OneTouchTimeRec", icon:""
+} 
+
+standardTile("OneTouchRec", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"OneTouchRec", action:"OneTouchRec", icon:""
+} 
+
+standardTile("OneTouchStop", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"OneTouchStop", action:"OneTouchStop", icon:""
+} 
+
+standardTile("DUX", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"DUX", action:"DUX", icon:""
+} 
+
+standardTile("FootballMode", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"FootballMode", action:"FootballMode", icon:""
+} 
+
+standardTile("Social", "device.switch", inactiveLabel: false, height: 1, width: 1, decoration: "flat") {
+   state "default", label:"Social", action:"Social", icon:""
+} 
 
     
     main "switch"
-    details(["switch", "digital", "picoff", "tv_source", "hdmi1", "hdmi2", "hdmi3", "hdmi4", "netflix", "home", "mute", "refresh", "gguide", "epg", "favorites", "display", "options", "retu", "up", "down", "right", "left", "confirm", "green", "yellow", "blue", "num1", "num2", "num3", "num4", "num5", "num6", "num7", "num8", "num9", "num0", "num11", "num12", "volumeup", "volumedown", "WOLC"])
+    details(["switch", "digital", "picoff", "tv_source", "hdmi1", "hdmi2", "hdmi3", "hdmi4", "netflix", "home", "mute", "refresh", "gguide", "epg", "favorites", "display", "options", "retu", "up", "down", "right", "left", "confirm", "green", "yellow", "blue", "num1", "num2", "num3", "num4", "num5", "num6", "num7", "num8", "num9", "num0", "num11", "num12", "volumeup", "volumedown", "ChannelUp", "ChannelDown", "SubTitle", "ClosedCaption", "Enter", "DOT", "Analog", "Teletext", "Exit", "Analog2", "AD", "Digital", "Analogg", "BS", "CS", "BSCS", "Ddata", "PicOff", "Tv_Radio", "Theater", "SEN", "InternetWidgets", "InternetVideo", "Netflix", "SceneSelect", "Mode3D", "iManual", "Audio", "Wide", "Jump", "PAP", "MyEPG", "ProgramDescription", "WriteChapter", "TrackID", "TenKey", "AppliCast", "acTVila", "DeleteVideo", "PhotoFrame", "TvPause", "KeyPad", "Media", "Forward", "Play", "Rewind", "Prev", "Stop", "Next", "Rec", "Pause", "Eject", "FlashPlus", "FlashMinus", "TopMenu", "RakurakuStart", "OneTouchTimeRec", "OneTouchView", "OneTouchRec", "OneTouchStop", "DUX", "FootballMode", "Social", "WOLC"])
   }
 
 
@@ -373,7 +682,7 @@ def installed() {
 
 def on() {
   log.debug "Executing 'on'"
-  state.tv_poll_count = 0
+  
   if (state.tv == "polling"){
   	  WOLC()
   } else {
@@ -402,7 +711,6 @@ def poll() {
   state.tv_poll_count = (state.tv_poll_count + 1)
   if (state.tv_poll_count > 1 ) {
   	  sendEvent(name: "switch", value: "off")
-  	  state.tv_poll_count = 5
   }
   log.debug "Executing 'poll'"
   def json = "{\"id\":2,\"method\":\"getPowerStatus\",\"version\":\"1.0\",\"params\":[]}"
@@ -636,6 +944,447 @@ def volumedown(){
 	sendremotecommand()
 }
 
+def ChannelUp(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAAQAw=="
+	state.button = "ChannelUp"
+	sendremotecommand()
+}
+
+def ChannelDown(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAARAw=="
+	state.button = "ChannelDown"
+	sendremotecommand()
+}
+
+def SubTitle(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAJcAAAAoAw=="
+	state.button = "SubTitle"
+	sendremotecommand()
+}
+
+def ClosedCaption(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAKQAAAAQAw=="
+	state.button = "ClosedCaption"
+	sendremotecommand()
+}
+
+def Enter(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAALAw=="
+	state.button = "Enter"
+	sendremotecommand()
+}
+
+def DOT(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAJcAAAAdAw=="
+	state.button = "DOT"
+	sendremotecommand()
+}
+
+def Analog(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAHcAAAANAw=="
+	state.button = "Analog"
+	sendremotecommand()
+}
+
+def Teletext(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAA/Aw=="
+	state.button = "Teletext"
+	sendremotecommand()
+}
+
+def Exit(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAABjAw=="
+	state.button = "Exit"
+	sendremotecommand()
+}
+
+def Analog2(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAQAAAAEAAAA4Aw=="
+	state.button = "Analog2"
+	sendremotecommand()
+}
+
+def AD(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAABoAAAA7Aw=="
+	state.button = "*AD"
+	sendremotecommand()
+}
+
+def Digital(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAJcAAAAyAw=="
+	state.button = "Digital"
+	sendremotecommand()
+}
+
+def Analogg(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAJcAAAAuAw=="
+	state.button = "Analog?"
+	sendremotecommand()
+}
+
+def BS(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAJcAAAAsAw=="
+	state.button = "BS"
+	sendremotecommand()
+}
+
+def CS(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAJcAAAArAw=="
+	state.button = "CS"
+	sendremotecommand()
+}
+
+def BSCS(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAJcAAAAQAw=="
+	state.button = "BSCS"
+	sendremotecommand()
+}
+
+def Ddata(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAJcAAAAVAw=="
+	state.button = "Ddata"
+	sendremotecommand()
+}
+
+def Tv_Radio(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAABoAAABXAw=="
+	state.button = "Tv_Radio"
+	sendremotecommand()
+}
+
+def Theater(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAAHcAAABgAw=="
+	state.button = "Theater"
+	sendremotecommand()
+}
+
+def SEN(){
+	//Set Remote command to send
+	state.remotecommand = "AAAAAgAAABoAAAB9Aw=="
+	state.button = "SEN"
+	sendremotecommand()
+}
+
+def InternetWidgets(){
+	//Set Remote command to InternetWidgetsd
+	state.remotecommand = "AAAAAgAAABoAAAB6Aw=="
+	state.button = "InternetWidgets"
+	sendremotecommand()
+}
+
+def InternetVideo(){
+	//Set Remote command to InternetVideod
+	state.remotecommand = "AAAAAgAAABoAAAB5Aw=="
+	state.button = "InternetVideo"
+	sendremotecommand()
+}
+
+def Netflix(){
+	//Set Remote command to Netflixd
+	state.remotecommand = "AAAAAgAAABoAAAB8Aw=="
+	state.button = "Netflix"
+	sendremotecommand()
+}
+
+def SceneSelect(){
+	//Set Remote command to SceneSelectd
+	state.remotecommand = "AAAAAgAAABoAAAB4Aw=="
+	state.button = "SceneSelect"
+	sendremotecommand()
+}
+
+def Mode3D(){
+	//Set Remote command to Mode3Dd
+	state.remotecommand = "AAAAAgAAAHcAAABNAw=="
+	state.button = "Mode3D"
+	sendremotecommand()
+}
+
+def iManual(){
+	//Set Remote command to iManuald
+	state.remotecommand = "AAAAAgAAABoAAAB7Aw=="
+	state.button = "iManual"
+	sendremotecommand()
+}
+
+def Audio(){
+	//Set Remote command to Audiod
+	state.remotecommand = "AAAAAQAAAAEAAAAXAw=="
+	state.button = "Audio"
+	sendremotecommand()
+}
+
+def Wide(){
+	//Set Remote command to Wided
+	state.remotecommand = "AAAAAgAAAKQAAAA9Aw=="
+	state.button = "Wide"
+	sendremotecommand()
+}
+
+def Jump(){
+	//Set Remote command to Jumpd
+	state.remotecommand = "AAAAAQAAAAEAAAA7Aw=="
+	state.button = "Jump"
+	sendremotecommand()
+}
+
+def PAP(){
+	//Set Remote command to PAPd
+	state.remotecommand = "AAAAAgAAAKQAAAB3Aw=="
+	state.button = "PAP"
+	sendremotecommand()
+}
+
+def MyEPG(){
+	//Set Remote command to MyEPGd
+	state.remotecommand = "AAAAAgAAAHcAAABrAw=="
+	state.button = "MyEPG"
+	sendremotecommand()
+}
+
+def ProgramDescription(){
+	//Set Remote command to ProgramDescriptiond
+	state.remotecommand = "AAAAAgAAAJcAAAAWAw=="
+	state.button = "ProgramDescription"
+	sendremotecommand()
+}
+
+def WriteChapter(){
+	//Set Remote command to WriteChapterd
+	state.remotecommand = "AAAAAgAAAHcAAABsAw=="
+	state.button = "WriteChapter"
+	sendremotecommand()
+}
+
+def TrackID(){
+	//Set Remote command to TrackIDd
+	state.remotecommand = "AAAAAgAAABoAAAB+Aw=="
+	state.button = "TrackID"
+	sendremotecommand()
+}
+
+def TenKey(){
+	//Set Remote command to TenKeyd
+	state.remotecommand = "AAAAAgAAAJcAAAAMAw=="
+	state.button = "TenKey"
+	sendremotecommand()
+}
+
+def AppliCast(){
+	//Set Remote command to AppliCastd
+	state.remotecommand = "AAAAAgAAABoAAAByAw=="
+	state.button = "AppliCast"
+	sendremotecommand()
+}
+
+def DeleteVideo(){
+	//Set Remote command to DeleteVideod
+	state.remotecommand = "AAAAAgAAAHcAAAAfAw=="
+	state.button = "DeleteVideo"
+	sendremotecommand()
+}
+
+def PhotoFrame(){
+	//Set Remote command to PhotoFramed
+	state.remotecommand = "AAAAAgAAABoAAABVAw=="
+	state.button = "PhotoFrame"
+	sendremotecommand()
+}
+
+def TvPause(){
+	//Set Remote command to TvPaused
+	state.remotecommand = "AAAAAgAAABoAAABnAw=="
+	state.button = "TvPause"
+	sendremotecommand()
+}
+
+def KeyPad(){
+	//Set Remote command to KeyPadd
+	state.remotecommand = "AAAAAgAAABoAAAB1Aw=="
+	state.button = "KeyPad"
+	sendremotecommand()
+}
+
+def Media(){
+	//Set Remote command to Mediad
+	state.remotecommand = "AAAAAgAAAJcAAAA4Aw=="
+	state.button = "Media"
+	sendremotecommand()
+}
+
+def SyncMenu(){
+	//Set Remote command to SyncMenud
+	state.remotecommand = "AAAAAgAAABoAAABYAw=="
+	state.button = "SyncMenu"
+	sendremotecommand()
+}
+
+def Forward(){
+	//Set Remote command to Forwardd
+	state.remotecommand = "AAAAAgAAAJcAAAAcAw=="
+	state.button = "Forward"
+	sendremotecommand()
+}
+
+def Play(){
+	//Set Remote command to Playd
+	state.remotecommand = "AAAAAgAAAJcAAAAaAw=="
+	state.button = "Play"
+	sendremotecommand()
+}
+
+def Rewind(){
+	//Set Remote command to Rewindd
+	state.remotecommand = "AAAAAgAAAJcAAAAbAw=="
+	state.button = "Rewind"
+	sendremotecommand()
+}
+
+def Prev(){
+	//Set Remote command to Prevd
+	state.remotecommand = "AAAAAgAAAJcAAAA8Aw=="
+	state.button = "Prev"
+	sendremotecommand()
+}
+
+def Stop(){
+	//Set Remote command to Stopd
+	state.remotecommand = "AAAAAgAAAJcAAAAYAw=="
+	state.button = "Stop"
+	sendremotecommand()
+}
+
+def Next(){
+	//Set Remote command Next
+	state.remotecommand = "AAAAAgAAAJcAAAA9Aw=="
+	state.button = "Next"
+	sendremotecommand()
+}
+
+def Rec(){
+	//Set Remote command Rec
+	state.remotecommand = "AAAAAgAAAJcAAAAgAw=="
+	state.button = "Rec"
+	sendremotecommand()
+}
+
+def Pause(){
+	//Set Remote command Pause
+	state.remotecommand = "AAAAAgAAAJcAAAAZAw=="
+	state.button = "Pause"
+	sendremotecommand()
+}
+
+def Eject(){
+	//Set Remote command Eject
+	state.remotecommand = "AAAAAgAAAJcAAABIAw=="
+	state.button = "Eject"
+	sendremotecommand()
+}
+
+def FlashPlus(){
+	//Set Remote command FlashPlus
+	state.remotecommand = "AAAAAgAAAJcAAAB4Aw=="
+	state.button = "FlashPlus"
+	sendremotecommand()
+}
+
+def FlashMinus(){
+	//Set Remote command FlashMinus
+	state.remotecommand = "AAAAAgAAAJcAAAB5Aw=="
+	state.button = "FlashMinus"
+	sendremotecommand()
+}
+
+def TopMenu(){
+	//Set Remote command TopMenu
+	state.remotecommand = "AAAAAgAAABoAAABgAw=="
+	state.button = "TopMenu"
+	sendremotecommand()
+}
+
+def PopUpMenu(){
+	//Set Remote command PopUpMenu
+	state.remotecommand = "AAAAAgAAABoAAABhAw=="
+	state.button = "PopUpMenu"
+	sendremotecommand()
+}
+
+def RakurakuStart(){
+	//Set Remote command RakurakuStart
+	state.remotecommand = "AAAAAgAAAHcAAABqAw=="
+	state.button = "RakurakuStart"
+	sendremotecommand()
+}
+
+def OneTouchView(){
+	//Set Remote command OneTouchView
+	state.remotecommand = "AAAAAgAAABoAAABlAw=="
+	state.button = "OneTouchView"
+	sendremotecommand()
+}
+
+def OneTouchTimeRec(){
+	//Set Remote command OneTouchTimeRec
+	state.remotecommand = "AAAAAgAAABoAAABkAw=="
+	state.button = "OneTouchTimeRec"
+	sendremotecommand()
+}
+
+def OneTouchRec(){
+	//Set Remote command OneTouchRec
+	state.remotecommand = "AAAAAgAAABoAAABiAw=="
+	state.button = "OneTouchRec"
+	sendremotecommand()
+}
+
+def OneTouchStop(){
+	//Set Remote command OneTouchStop
+	state.remotecommand = "AAAAAgAAABoAAABjAw=="
+	state.button = "OneTouchStop"
+	sendremotecommand()
+}
+
+def DUX(){
+	//Set Remote command DUX
+	state.remotecommand = "AAAAAgAAABoAAABzAw=="
+	state.button = "DUX"
+	sendremotecommand()
+}
+
+def FootballMode(){
+	//Set Remote command FootballMode
+	state.remotecommand = "AAAAAgAAABoAAAB2Aw=="
+	state.button = "FootballMode"
+	sendremotecommand()
+}
+
+def Social(){
+	//Set Remote command Social
+	state.remotecommand = "AAAAAgAAABoAAAB0Aw=="
+	state.button = "Social"
+	sendremotecommand()
+}
+
 def sendremotecommand(){
 	log.debug "Sending Button: ${state.button} ${state.remotecommand}"
     def rawcmd = "${state.remotecommand}"
@@ -649,7 +1398,6 @@ def sendremotecommand(){
      sendHubCommand(sonycmd)
      log.debug( "hubAction = ${sonycmd}" )
 }
-
 
 def tv_source() {
 	log.debug "Executing Source"
@@ -722,20 +1470,6 @@ def hdmi4() {
      //log.debug( "hubAction = ${sonycmd}" )
 }
 
-def netflix() {
-	log.debug "Launching Netflix"
-    def rawcmd = "AAAAAgAAABoAAAB8Aw=="  //netflix
-    def sonycmd = new physicalgraph.device.HubSoapAction(
-            path:    '/sony/IRCC',
-            urn:     "urn:schemas-sony-com:service:IRCC:1",
-            action:  "X_SendIRCC",
-            body:    ["IRCCCode":rawcmd],
-            headers: [Host:"${state.tv_ip}:${tv_port}", 'X-Auth-PSK':"${tv_psk}"]
-     )
-     sendHubCommand(sonycmd)
-     //log.debug( "hubAction = ${sonycmd}" )
-}
-
 def mute() {
 	log.debug "mute"
     def rawcmd = "AAAAAQAAAAEAAAAUAw=="  //mute
@@ -761,103 +1495,6 @@ def WOLC() {
 	return result
 }
 
-/**{"name":"PowerOff","value":"AAAAAQAAAAEAAAAvAw=="},
-{"name":"GGuide","value":"AAAAAQAAAAEAAAAOAw=="},
-{"name":"EPG","value":"AAAAAgAAAKQAAABbAw=="},
-{"name":"Favorites","value":"AAAAAgAAAHcAAAB2Aw=="},
-{"name":"Display","value":"AAAAAQAAAAEAAAA6Aw=="},
-{"name":"Home","value":"AAAAAQAAAAEAAABgAw=="},
-{"name":"Options","value":"AAAAAgAAAJcAAAA2Aw=="},
-{"name":"Return","value":"AAAAAgAAAJcAAAAjAw=="},
-{"name":"Up","value":"AAAAAQAAAAEAAAB0Aw=="},
-{"name":"Down","value":"AAAAAQAAAAEAAAB1Aw=="},
-{"name":"Right","value":"AAAAAQAAAAEAAAAzAw=="},
-{"name":"Left","value":"AAAAAQAAAAEAAAA0Aw=="},
-{"name":"Confirm","value":"AAAAAQAAAAEAAABlAw=="},
-{"name":"Red","value":"AAAAAgAAAJcAAAAlAw=="},
-{"name":"Green","value":"AAAAAgAAAJcAAAAmAw=="},
-{"name":"Yellow","value":"AAAAAgAAAJcAAAAnAw=="},
-{"name":"Blue","value":"AAAAAgAAAJcAAAAkAw=="},
-{"name":"Num1","value":"AAAAAQAAAAEAAAAAAw=="},
-{"name":"Num2","value":"AAAAAQAAAAEAAAABAw=="},
-{"name":"Num3","value":"AAAAAQAAAAEAAAACAw=="},
-{"name":"Num4","value":"AAAAAQAAAAEAAAADAw=="},
-{"name":"Num5","value":"AAAAAQAAAAEAAAAEAw=="},
-{"name":"Num6","value":"AAAAAQAAAAEAAAAFAw=="},
-{"name":"Num7","value":"AAAAAQAAAAEAAAAGAw=="},
-{"name":"Num8","value":"AAAAAQAAAAEAAAAHAw=="},
-{"name":"Num9","value":"AAAAAQAAAAEAAAAIAw=="},
-{"name":"Num0","value":"AAAAAQAAAAEAAAAJAw=="},
-{"name":"Num11","value":"AAAAAQAAAAEAAAAKAw=="},
-{"name":"Num12","value":"AAAAAQAAAAEAAAALAw=="},
-{"name":"VolumeUp","value":"AAAAAQAAAAEAAAASAw=="},
-{"name":"VolumeDown","value":"AAAAAQAAAAEAAAATAw=="},
-{"name":"Mute","value":"AAAAAQAAAAEAAAAUAw=="},
-{"name":"ChannelUp","value":"AAAAAQAAAAEAAAAQAw=="},
-{"name":"ChannelDown","value":"AAAAAQAAAAEAAAARAw=="},
-{"name":"SubTitle","value":"AAAAAgAAAJcAAAAoAw=="},
-{"name":"ClosedCaption","value":"AAAAAgAAAKQAAAAQAw=="},
-{"name":"Enter","value":"AAAAAQAAAAEAAAALAw=="},
-{"name":"DOT","value":"AAAAAgAAAJcAAAAdAw=="},
-{"name":"Analog","value":"AAAAAgAAAHcAAAANAw=="},
-{"name":"Teletext","value":"AAAAAQAAAAEAAAA/Aw=="},
-{"name":"Exit","value":"AAAAAQAAAAEAAABjAw=="},
-{"name":"Analog2","value":"AAAAAQAAAAEAAAA4Aw=="},
-{"name":"*AD","value":"AAAAAgAAABoAAAA7Aw=="},
-{"name":"Digital","value":"AAAAAgAAAJcAAAAyAw=="},
-{"name":"Analog?","value":"AAAAAgAAAJcAAAAuAw=="},
-{"name":"BS","value":"AAAAAgAAAJcAAAAsAw=="},
-{"name":"CS","value":"AAAAAgAAAJcAAAArAw=="},
-{"name":"BSCS","value":"AAAAAgAAAJcAAAAQAw=="},
-{"name":"Ddata","value":"AAAAAgAAAJcAAAAVAw=="},
-{"name":"PicOff","value":"AAAAAQAAAAEAAAA+Aw=="},
-{"name":"Tv_Radio","value":"AAAAAgAAABoAAABXAw=="},
-{"name":"Theater","value":"AAAAAgAAAHcAAABgAw=="},
-{"name":"SEN","value":"AAAAAgAAABoAAAB9Aw=="},
-{"name":"InternetWidgets","value":"AAAAAgAAABoAAAB6Aw=="},
-{"name":"InternetVideo","value":"AAAAAgAAABoAAAB5Aw=="},
-{"name":"Netflix","value":"AAAAAgAAABoAAAB8Aw=="},
-{"name":"SceneSelect","value":"AAAAAgAAABoAAAB4Aw=="},
-{"name":"Mode3D","value":"AAAAAgAAAHcAAABNAw=="},
-{"name":"iManual","value":"AAAAAgAAABoAAAB7Aw=="},
-{"name":"Audio","value":"AAAAAQAAAAEAAAAXAw=="},
-{"name":"Wide","value":"AAAAAgAAAKQAAAA9Aw=="},
-{"name":"Jump","value":"AAAAAQAAAAEAAAA7Aw=="},
-{"name":"PAP","value":"AAAAAgAAAKQAAAB3Aw=="},
-{"name":"MyEPG","value":"AAAAAgAAAHcAAABrAw=="},
-{"name":"ProgramDescription","value":"AAAAAgAAAJcAAAAWAw=="},
-{"name":"WriteChapter","value":"AAAAAgAAAHcAAABsAw=="},
-{"name":"TrackID","value":"AAAAAgAAABoAAAB+Aw=="},
-{"name":"TenKey","value":"AAAAAgAAAJcAAAAMAw=="},
-{"name":"AppliCast","value":"AAAAAgAAABoAAABvAw=="},
-{"name":"acTVila","value":"AAAAAgAAABoAAAByAw=="},
-{"name":"DeleteVideo","value":"AAAAAgAAAHcAAAAfAw=="},
-{"name":"PhotoFrame","value":"AAAAAgAAABoAAABVAw=="},
-{"name":"TvPause","value":"AAAAAgAAABoAAABnAw=="},
-{"name":"KeyPad","value":"AAAAAgAAABoAAAB1Aw=="},
-{"name":"Media","value":"AAAAAgAAAJcAAAA4Aw=="},
-{"name":"SyncMenu","value":"AAAAAgAAABoAAABYAw=="},
-{"name":"Forward","value":"AAAAAgAAAJcAAAAcAw=="},
-{"name":"Play","value":"AAAAAgAAAJcAAAAaAw=="},
-{"name":"Rewind","value":"AAAAAgAAAJcAAAAbAw=="},
-{"name":"Prev","value":"AAAAAgAAAJcAAAA8Aw=="},
-{"name":"Stop","value":"AAAAAgAAAJcAAAAYAw=="},
-{"name":"Next","value":"AAAAAgAAAJcAAAA9Aw=="},
-{"name":"Rec","value":"AAAAAgAAAJcAAAAgAw=="},
-{"name":"Pause","value":"AAAAAgAAAJcAAAAZAw=="},
-{"name":"Eject","value":"AAAAAgAAAJcAAABIAw=="},
-{"name":"FlashPlus","value":"AAAAAgAAAJcAAAB4Aw=="},
-{"name":"FlashMinus","value":"AAAAAgAAAJcAAAB5Aw=="},
-{"name":"TopMenu","value":"AAAAAgAAABoAAABgAw=="},
-{"name":"PopUpMenu","value":"AAAAAgAAABoAAABhAw=="},
-{"name":"RakurakuStart","value":"AAAAAgAAAHcAAABqAw=="},
-{"name":"OneTouchTimeRec","value":"AAAAAgAAABoAAABkAw=="},
-{"name":"OneTouchView","value":"AAAAAgAAABoAAABlAw=="},
-{"name":"OneTouchRec","value":"AAAAAgAAABoAAABiAw=="},
-{"name":"OneTouchStop","value":"AAAAAgAAABoAAABjAw=="},
-{"name":"DUX","value":"AAAAAgAAABoAAABzAw=="},
-{"name":"FootballMode","value":"AAAAAgAAABoAAAB2Aw=="},
-{"name":"Social","value":"AAAAAgAAABoAAAB0Aw=="}]]}
-*/
+
 
 
