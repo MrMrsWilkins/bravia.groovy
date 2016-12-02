@@ -567,9 +567,9 @@ standardTile("Social", "device.switch", inactiveLabel: false, height: 1, width: 
    state "default", label:"Social", action:"Social", icon:""
 } 
 
-    
+    /**uncomment any extra buttons you need from the lines below*/
     main "switch"
-    details(["switch", "digital", "picoff", "tv_source", "hdmi1", "hdmi2", "hdmi3", "hdmi4", "netflix", "home", "mute", "refresh", "gguide", "epg", "favorites", "display", "options", "retu", "up", "down", "right", "left", "confirm", "green", "yellow", "blue", "num1", "num2", "num3", "num4", "num5", "num6", "num7", "num8", "num9", "num0", "num11", "num12", "volumeup", "volumedown", "ChannelUp", "ChannelDown", "SubTitle", "ClosedCaption", "Enter", "DOT", "Analog", "Teletext", "Exit", "Analog2", "AD", "Digital", "Analogg", "BS", "CS", "BSCS", "Ddata", "PicOff", "Tv_Radio", "Theater", "SEN", "InternetWidgets", "InternetVideo", "Netflix", "SceneSelect", "Mode3D", "iManual", "Audio", "Wide", "Jump", "PAP", "MyEPG", "ProgramDescription", "WriteChapter", "TrackID", "TenKey", "AppliCast", "acTVila", "DeleteVideo", "PhotoFrame", "TvPause", "KeyPad", "Media", "Forward", "Play", "Rewind", "Prev", "Stop", "Next", "Rec", "Pause", "Eject", "FlashPlus", "FlashMinus", "TopMenu", "RakurakuStart", "OneTouchTimeRec", "OneTouchView", "OneTouchRec", "OneTouchStop", "DUX", "FootballMode", "Social", "WOLC"])
+    details(["switch", "digital", "picoff", "tv_source", "hdmi1", "hdmi2", "hdmi3", "hdmi4", "Netflix", "home", "mute", "refresh", "gguide", "epg", "favorites", "display", "options", "retu", "up", "down", "right", "left", "confirm", "Forward", "Play", "Rewind", "Prev", "Stop", "Next", "Rec", "Pause", "Eject", "volumeup", "volumedown", "ChannelUp", "ChannelDown",/** "green", "yellow", "blue", "num1", "num2", "num3", "num4", "num5", "num6", "num7", "num8", "num9", "num0", "num11", "num12", "SubTitle", "ClosedCaption", "Enter", "DOT", "Analog", "Teletext", "Exit", "Analog2", "AD", "Digital", "Analogg", "BS", "CS", "BSCS", "Ddata", "PicOff", "Tv_Radio", "Theater", "SEN", "InternetWidgets", "InternetVideo", "SceneSelect", "Mode3D", "iManual", "Audio", "Wide", "Jump", "PAP", "MyEPG", "ProgramDescription", "WriteChapter", "TrackID", "TenKey", "AppliCast", "acTVila", "DeleteVideo", "PhotoFrame", "TvPause", "KeyPad", "Media", "FlashPlus", "FlashMinus", "TopMenu", "RakurakuStart", "OneTouchTimeRec", "OneTouchView", "OneTouchRec", "OneTouchStop", "DUX", "FootballMode", "Social",*/ "WOLC"])
   }
 
 
@@ -1494,7 +1494,4 @@ def WOLC() {
 	)
 	return result
 }
-
-
-
 
