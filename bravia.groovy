@@ -104,7 +104,6 @@ metadata {
     command "SEN"
     command "InternetWidgets"
     command "InternetVideo"
-    command "Netflix"
     command "SceneSelect"
     command "Mode3D"
     command "iManual"
@@ -568,7 +567,7 @@ standardTile("Social", "device.switch", inactiveLabel: false, height: 1, width: 
     
     main "switch"
     	//A number of the available buttons are commented out in the lines below, All of these buttons work but having all of them avilable slowed down the smart things phone application. if you would like some of these buttons availabel to you you can move them out of the commented line on to the line above 
-	details(["switch", "hdmi1", "hdmi2", "hdmi3", "hdmi4", "Netflix", "Digital", "tv_source", "home", "mute", "picoff", "gguide", "epg", "favorites", "display", "options", "retu", "up", "down", "right", "left", "confirm", "Forward", "Play", "Rewind", "Prev", "Stop", "Next", "Rec", "Pause", "Eject", "volumeup", "volumedown", "ChannelUp", "ChannelDown",
+	details(["switch", "hdmi1", "hdmi2", "hdmi3", "hdmi4", "netflix", "Digital", "tv_source", "home", "mute", "picoff", "gguide", "epg", "favorites", "display", "options", "retu", "up", "down", "right", "left", "confirm", "Forward", "Play", "Rewind", "Prev", "Stop", "Next", "Rec", "Pause", "Eject", "volumeup", "volumedown", "ChannelUp", "ChannelDown",
 		 /** "green", "yellow", "blue", "num1", "num2", "num3", "num4", "num5", "num6", "num7", "num8", "num9", "num0", "num11", "num12", "SubTitle", "ClosedCaption", "Enter", "DOT", "Analog", "Teletext", "Exit", "Analog2", "AD", "Analogg", "BS", "CS", "BSCS", "Ddata", "PicOff", "Tv_Radio", "Theater", "SEN", "InternetWidgets", "InternetVideo", "SceneSelect", "Mode3D", "iManual", "Audio", "Wide", "Jump", "PAP", "MyEPG", "ProgramDescription", "WriteChapter", "TrackID", "TenKey", "AppliCast", "acTVila", "DeleteVideo", "PhotoFrame", "TvPause", "KeyPad", "Media", "FlashPlus", "FlashMinus", "TopMenu", "RakurakuStart", "OneTouchTimeRec", "OneTouchView", "OneTouchRec", "OneTouchStop", "DUX", "FootballMode", "Social",*/ 
 		 "WOLC", "refresh"
 		])
@@ -1102,7 +1101,7 @@ def InternetVideo(){
 	sendremotecommand()
 }
 
-def Netflix(){
+def netflix(){
 	//Set Remote command to Netflixd
 	state.remotecommand = "AAAAAgAAABoAAAB8Aw=="
 	state.button = "Netflix"
